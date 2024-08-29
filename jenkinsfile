@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/hana-1441/Django_Jenkins.git'
+            }
+        }
+
+        stage('Install Virtualenv') {
+            steps {
+                // Create the virtual environment
+                sh 'python -m venv .venv'
+                
+                // Activate the virtual environment and install packages
+                sh '''
+                source .venv/bin/activate
+                '''
+                // pip install --upgrade pip  # Optional: Upgrade pip
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'python manage.py test'
+            }
+        }
+
+        stage('Lint') {
+            steps {
+                sh 'flake8 .'
+            }
+        }
+    }
+}
