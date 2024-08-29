@@ -1,0 +1,16 @@
+# Python
+*.pyc
+*~
+__pycache__
+
+# Env
+# .env
+# myenv/
+# venv/
+.venv/
+
+# Database
+db.sqlite3
+
+Dozecafe Free Website Template - Free-CSS.com/
+Dozecafe Free Website Template - Free-CSS.com.zip
